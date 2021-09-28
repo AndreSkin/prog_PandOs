@@ -28,7 +28,6 @@ Files di fase 3:
 	- sysSupport.c -> Implementa gli exception handler (general e syscall) e contiene le system call di fase 3
 	- sysSupport.h -> Header file contenente le signature delle funzioni usate in sysSupport.c.
 Documentazione:
-	- AUTHORS.txt -> Contiene nomi, email e numeri di matricola dei componenti che hanno preso parte alla realizzazione di questa fase del progetto
 	- README.txt (questo file)
 	- Documentazione.txt -> contiene in breve alcune scelte progettuali
 Cartella resources:
