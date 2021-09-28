@@ -1,0 +1,65 @@
+Progetto di Sistemi Operativi A.A 2020/2021
+	Fase 3
+	
+Files di Fase 1:
+	- pcb.h -> header per la gestione dei PCB, contiene le signatures delle funzioni da implementare per i PCB
+	- pcb.c -> definizione delle funzioni da implementare per i PCB
+	- asl.h -> header per la gestione dei semafori, contiene le signatures delle funzioni da implementare per i semafori
+	- asl.c -> definizione delle funzioni da implementare per i semafori
+Files di fase 2:
+	- initial.c -> contiene il main e provvede all'inizializzazione delle strutture necessarie per fase 2. 
+				   Inoltre contiene le dichiarazioni di funzioni extern per il test e per il TLB refill handler
+	- scheduler.h -> header file contenente la signature della funzione scheduler().
+	- scheduler.c -> contiene un'unica funzione (scheduler()) che implementa lo scheduler, implementato con round robine con un semplice deadlock detector
+	- exceptions.h -> header file contenente le firme delle funzioni per la gestione delle eccezioni e delle System call richieste in questa fase
+	- exceptions.c -> contiene le definizioni delle funzioni per l'exception handling e delle system call richieste in questa fase del progetto.
+					  Tra queste funzioni è presente anche un exception handler che si occupa di chiamare le altre funzioni.
+	- interrupts.h -> contiene le firme per le funzioni di gestione degli interrupts
+	- interrupts.c -> contiene le definizioni delle funzioni per la gestione degli interrupts
+	- mcpy.h -> contiene la signature della funzione memcpy
+	- mcpy.c -> contiene la definizione della funzione memcpy, necessaria per il funzionamento di PandOS su umps3
+Files di fase 3:
+	- initProc.c -> Implementa la funzione test() e contiene le variabili globali del Support level
+	- initProc.h -> Header file contenente le signature delle funzioni usate in initProc.c.
+	- vmSupport.c -> Implementa il TLB exception handler e il pager (con relativo algoritmo di rimpiazzamento)
+					 Inoltre contiene la funzione per effetturare l'updatedel TLB e altre due funzioni.
+	- vmSupport.h -> Header file contenente le signature delle funzioni usate in vmSupport.c.
+	- sysSupport.c -> Implementa gli exception handler (general e syscall) e contiene le system call di fase 3
+	- sysSupport.h -> Header file contenente le signature delle funzioni usate in sysSupport.c.
+Documentazione:
+	- AUTHORS.txt -> Contiene nomi, email e numeri di matricola dei componenti che hanno preso parte alla realizzazione di questa fase del progetto
+	- README.txt (questo file)
+	- Documentazione.txt -> contiene in breve alcune scelte progettuali
+Cartella resources:
+	Files di pandOS
+		- pandos_const.h -> header contenente diverse costanti
+		- pandos_types.h -> header contenente definizioni di tipi per pandOS
+	Testers, per testare il progetto
+
+
+NB: ogni volta che si fa riferimento a "pops" si intende il manuale "uMPS3 principles of operations"
+
+Istruzioni per la compilazione e l'esecuzione:
+- ATTENZIONE: in base a dove è installato umps3 potrebbe essere necessario apportare delle modifiche ai files,
+	in particolare alle inclusioni delle librerie
+	
+- Aprire nel terminale la cartella Fase_3
+- Lanciare il comando make
+- Il makefile provvederà alla compilazione e alla creazione di alcuni files per umps3
+- Aprire nel terminale la cartella resources/testers
+- Lanciare il comando make
+- Il makefile provvederà alla compilazione e alla creazione dei test
+- Lanciare umps3
+- Selezionare l'opzione "open an existing machine configuration"
+- Navigare fino alla cartella resources e selezionare la configurazione chiamata phase3Config
+- Avviare la configurazione (pulsante verde - Power on) 
+	- (premere alt + 0 - alt + 7 per mostrare i Terminal 0 - 7)
+	- (se si desidera vedere lo stato del processore 0 è possibile fare click sulla scheda Processors oppure premere alt + shift + 0)
+- Eseguire il codice (tasto continue)
+- Sarà richiesto di inserire due stringhe in sequenza sul terminal 0
+	- Digitare le stringhe desiderate e premere invio
+- Al termine dell'esecuzione premere nuovamente sul simbolo di stop per fermare il sistema
+- Spegnere la macchina emulata
+
+Per maggiori informazioni leggere il file Documentazione.txt
+

@@ -1,0 +1,50 @@
+Progetto di Sistemi Operativi A.A 2020/2021
+	Fase 3
+
+La Fase 3 del progetto prevedeva di implementare il livello di supporto del sistema operativo PandOS (livello 4).
+Le funzionalità da gestire sono:
+- Exception handleer per quanto riguarda le eccezioni non gestite in fase 2
+- Implementazione di uTLBrefillHadler
+- Address translation e Memoria virtuale
+- Interazione semplificata con i dispositivi
+
+Le scelte progettuali che riteniamo essere degne di nota sono:
+- Abbiamo inserito molti commenti, con diversi riferimenti ai manuali, in modo che il progetto potesse risultare chiaro anche ad un esterno che non lo conosce.
+
+- L'aggiunta al file pandos_const.h della segiente costante:
+  - SWAP_POOL_STARTING_ADDRESS definito come (0x20000000 + (32 * PAGESIZE)) secondo quanto riportato nel paragrafo 4.4.1 della student guide
+
+- Alcune modifiche effettuate a fase 2:
+	- Alla funzione PassUporDie() è stata aggiunta il compito che aveva prima la funzione NotAValidSyscall(), in modo da sostituire quest'ultima
+		In particolare NotAValidSyscall() si occupava di terminare un processo se la support struct == NULL o, altrimenti, di chiamare PassUP()
+	
+	- Nella Syscall 1 (create process) ci siamo accorti che il valore OK veniva ritornato nella locazione sbagliata
+		A causa di ciò, la creazione degli 8 processi di fase 3 non avveniva con successo e il sistema veniva arrestato immediatamente.
+	
+	- A causa di alcuni test svolti prima della consegna di fase 2, il time-slice dello scheduler era rimasto di 100ms invece che 50ms
+
+- Ottimizzazioni:
+Abbiamo inserito solo due delle ottimizzazioni proposte dal manuale, in particolare:
+	- Introdotto un master semaphore per una terminazione più "pulita"
+	- Quando un processo viene terminato, i frame che occupava vengono marcati come liberi
+
+- Viene suggerito di creare una funzione per inizializzare il TLB; noi abbiamo preferito non usare una funzione dato che il codice sarebbe stato poco e utilizzato una sola volta
+
+- La funzione SIGKILL() sarebbe parzialmente equivalente ad una SYS9, ma dato che è stata utile anche in altri contesti la abbiamo mantenuta separata.
+
+- Per creare ogni funzione abbiamo cercato di seguire il più fedelmente possibile quanto scritto nei manuali
+
+- Grazie a internet, alcuni colleghi e il makefile fornito dal manuale, siamo riusciti a compilare i file in cartelle diverse
+
+Difficoltà incontrate:
+- A causa di un errore nell'inizializzazione delle strutture e dei processi, avevamo un loop infinito di uTLBExceptionHandler() che ha richiesto diverso tempo per essere risolto
+- Inizialmente abbiamo avuto difficoltà a capire come leggere e scrivere da un device
+- Inizialmente non eseguivamo correttamente alcuni shift di bits, portando a risultati errati
+- In prima battuta, inserivamo tutti i files delle tre fasi in un unica directory per compilarli con un Makefile "rudimentale"
+
+NOTA: essendo rimasti solo in due a gestire questo progetto, ci siamo avvalsi della collaborazione di altri gruppi, con i quali abbiamo messo in comune alcune idee e per riuscire a concludere al meglio questa fase.
+
+Ulteriori delucidazioni possono essere fornite dai commenti presenti all'interno del codice.
+Al momento della consegna tutti i test (anche su umps3) danno esito positivo.
+La compilazione è avvenuta su Ubuntu 20.04.2 LTS e Debian 10.9 con cross - compilatore mipsel-gcc versione 9.3.0 senza warning.
+
