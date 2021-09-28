@@ -1,6 +1,7 @@
 Progetto di Sistemi Operativi A.A 2020/2021
-	Fase 3
-	
+
+Informazioni e manuali: http://wiki.virtualsquare.org/#!education/pandos.md
+
 Files di Fase 1:
 	- pcb.h -> header per la gestione dei PCB, contiene le signatures delle funzioni da implementare per i PCB
 	- pcb.c -> definizione delle funzioni da implementare per i PCB
